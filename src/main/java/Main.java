@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Main {
@@ -6,6 +7,9 @@ public class Main {
         ejercicioPlaneta();
         ejercicioRecursos();
         ejercicioMonitoreo();
+        ejercicioTareas();
+        ejercicioRutas();
+        ejercicioMensaje();
     }
 
     public static void ejercicioPlaneta() {
@@ -44,5 +48,49 @@ public class Main {
         AnalizadorEventos analizador = new AnalizadorEventos();
         MonitorAmbiental monitor = new MonitorAmbiental(variables, analizador);
         monitor.monitorearVariables();
+    }
+
+    public static void ejercicioTareas() {
+        MiembroTripulacion miembro1 = new MiembroTripulacion("Miembro 1");
+        MiembroTripulacion miembro2 = new MiembroTripulacion("Miembro 2");
+
+        Tarea tarea1 = new Tarea("Tarea 1", 10);
+        Tarea tarea2 = new Tarea("Tarea 2", 20);
+
+        List<MiembroTripulacion> tripulacion = Arrays.asList(miembro1, miembro2);
+        List<Tarea> tareas = Arrays.asList(tarea1, tarea2);
+
+        AdministradorTareas administrador = new AdministradorTareas(tripulacion, tareas);
+
+        administrador.asignarTareas();
+        administrador.ajustarAsignacion();
+    }
+
+    public static void ejercicioRutas() {
+        Mundo mundo = new Mundo(10, 10);
+        Simulador simulador = new Simulador(mundo);
+        simulador.simularTerreno();
+        System.out.println("Terreno simulado");
+        simulador.simularObstaculos();
+        System.out.println("Obstáculos simulados");
+
+        PlanificadorRutas planificador = new PlanificadorRutas(mundo);
+        Ruta ruta = planificador.planificarRuta(new Punto(1, 5), new Punto(8, 9));
+        System.out.println("Ruta planificada: " + ruta);
+        Ruta rutaOptimizada = planificador.optimizarRuta(ruta);
+        System.out.println("Ruta optimizada: " + rutaOptimizada);
+    }
+
+    public static void ejercicioMensaje() {
+        Comunicador comunicador = new Comunicador();
+        Mensaje mensaje = new Mensaje("trabajo terminado");
+
+        System.out.println("El mensaje es un palíndromo: " + mensaje.esPalindromo());
+        System.out.println("El mensaje tiene " + mensaje.contarCaracter('a') + " caracteres 'a'");
+
+        comunicador.enviarMensaje(mensaje);
+        Mensaje mensajeRecibido = comunicador.recibirMensaje();
+
+        System.out.println("Mensaje recibido: " + mensaje);
     }
 }
