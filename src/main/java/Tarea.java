@@ -7,6 +7,9 @@ public class Tarea {
         this.cargaTrabajo = cargaTrabajo;
     }
 
+    public Tarea(String testTarea) {
+    }
+
     // Getters y setters
     public String getNombre() {
         return nombre;
